@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="mycooking.Views.CrearTallerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mycooking.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFA500" Offset="0"/>
+                <GradientStop Color="Gray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Encabezado -->
+        <StackPanel Margin="20">
+            <TextBlock Text="Crear Taller" FontSize="24" Margin="0,0,0,20"/>
+        </StackPanel>
+
+        <!-- Contenido -->
+        <StackPanel Margin="110">
+
+            <TextBlock Text="Nombre del Taller" FontSize="18"/>
+            <TextBox x:Name="NombreTallerTextBox" PlaceholderText="Ingrese el nombre del taller" Margin="0,5,0,20"/>
+
+
+            <TextBlock Text="Fecha" FontSize="18"/>
+            <DatePicker x:Name="FechaDatePicker" Margin="0,5,0,20"/>
+
+
+            <TextBlock Text="Duración (horas)" FontSize="18"/>
+            <TextBox x:Name="DuracionTextBox" PlaceholderText="Ingrese la duración del taller en horas" Margin="0,5,0,20"/>
+
+
+            <TextBlock Text="Descripción" FontSize="18"/>
+            <TextBox x:Name="DescripcionTextBox" PlaceholderText="Ingrese la descripción del taller" Margin="0,5,0,20"/>
+
+        </StackPanel>
+
+
+        <Button Content="Crear Taller" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Click="CrearTaller_Click" Margin="0,0,0,20"/>
+    </Grid>
+</Page>

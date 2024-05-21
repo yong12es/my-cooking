@@ -1,0 +1,85 @@
+﻿<Page
+    x:Class="mycooking.Views.RecetasMundoPag"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mycooking.Views"
+    xmlns:converters="using:mycooking.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converters:Base64ToBitmapImageConverter x:Key="Base64ToBitmapImageConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFA500" Offset="0"/>
+                <GradientStop Color="Gray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Encabezado -->
+        <TextBlock Text="Bienvenido a recetas del mundo" FontSize="36" Margin="20" HorizontalAlignment="Left"/>
+       
+         
+        <!-- Utilizamos un Grid para organizar los elementos -->
+        <Grid Margin="20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <!-- La mitad de la pantalla -->
+                <ColumnDefinition Width="*"/>
+                <!-- La otra mitad de la pantalla -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Contenedor de países -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Background="LightGray" Margin="0,60,0,0">
+                <GridView ItemsSource="{Binding Paises}" Height="828">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Click="CountryButton_Click" Margin="10" Height="100" Width="100">
+                                <Grid>
+                                    <Image Source="{Binding Bandera}" Width="60" Height="60"/>
+                                    <TextBlock Text="{Binding Nombre}" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </ScrollViewer>
+
+            <!-- Control de búsqueda -->
+            <TextBox x:Name="txtBuscar" PlaceholderText="Buscar" VerticalAlignment="Top" Height="45" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10"/>
+
+            <!-- Botón de búsqueda -->
+            <Button Content="Buscar" VerticalAlignment="Top" Height="45" Width="100" Grid.Column="1" HorizontalAlignment="Right" Margin="10"/>
+
+            <!-- Contenedor de recetas -->
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="20,60,20,0">
+                <ListView ItemsSource="{Binding Recetas}" Margin="0,44,0,0" ItemClick="Receta_Click">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,20">
+                                <TextBlock Text="{Binding Nombre}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Descripcion}" TextWrapping="Wrap"/>
+                                <TextBlock Text="Instrucciones:" FontWeight="Bold" Margin="0,10,0,0"/>
+                                <TextBlock Text="{Binding Instrucciones}" TextWrapping="Wrap"/>
+                                <Image Source="{Binding Imagen, Converter={StaticResource Base64ToBitmapImageConverter}}" Width="200" Height="200" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+            <!-- Contenedor de la receta seleccionada -->
+        </Grid>
+    </Grid>
+
+</Page>

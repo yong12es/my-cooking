@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="mycooking.Views.CrearRecetaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mycooking.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFA500" Offset="0"/>
+                <GradientStop Color="Gray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Encabezado -->
+        <StackPanel Margin="20">
+            <TextBlock Text="Crear Receta" FontSize="24" Margin="0,0,0,20"/>
+        </StackPanel>
+
+        <!-- Contenido -->
+        <StackPanel Margin="110" Orientation="Vertical">
+            <TextBlock Text="Nombre de la Receta" FontSize="18"/>
+            <TextBox x:Name="NombreRecetaTextBox" PlaceholderText="Ingrese el nombre de la receta" Margin="0,5,0,20"/>
+
+
+            <TextBlock Text="Descripción" FontSize="18"/>
+            <TextBox x:Name="DescripcionTextBox" PlaceholderText="Ingrese la descripción de la receta" Margin="0,5,0,20"/>
+
+
+            <TextBlock Text="Instrucciones" FontSize="18"/>
+            <TextBox x:Name="InstruccionesTextBox" PlaceholderText="Ingrese las instrucciones de la receta" Margin="0,5,0,20"/>
+
+            <!-- Ingredientes -->
+            <TextBlock Text="Ingredientes" FontSize="18"/>
+            <StackPanel x:Name="IngredientesStackPanel" Margin="0,5,0,20">
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <TextBox PlaceholderText="Ingrediente" Width="150"/>
+                    <TextBox PlaceholderText="Cantidad" Width="100" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Content="Agregar Ingrediente" Click="AgregarIngrediente_Click" Margin="0,0,0,20"/>
+
+            <ComboBox x:Name="PaisesComboBox" PlaceholderText="Seleccione el país" DisplayMemberPath="Nombre" Margin="0,5,0,20" SelectionChanged="PaisesComboBox_SelectionChanged"/>
+
+            <!-- Imagen -->
+            <TextBlock Text="Imagen" FontSize="18"/>
+
+
+            <Button Content="Cargar Imagen" Click="CargarImagen_Click" Margin="0,5,0,20"/>
+            <Image x:Name="miImagenControl" Stretch="Uniform" VerticalAlignment="Center" Margin="400,-230, 0,20" Height="224" Width="388"/>
+
+        </StackPanel>
+
+        
+        <Button Content="Crear Receta" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Click="CrearReceta_Click" Margin="0,0,0,20"/>
+    </Grid>
+</Page>
