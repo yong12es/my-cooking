@@ -35,13 +35,13 @@ namespace mycooking.Views
         {
             
             this.InitializeComponent();
-            DataContext = RecetaPorPaisService.Instance;
+            DataContext = RecetaPorPaisViewModel.Instance;
             CargarPaises();
         }
 
         private async void CargarPaises()
         {
-            RecetaPorPaisService.Instance.Paises.Clear();
+            RecetaPorPaisViewModel.Instance.Paises.Clear();
             // Obtener la lista de países desde el servicio de la API
             var apiService = ApiService.GetInstance();
             var paises = await apiService.ObtenerPaises();
@@ -50,7 +50,7 @@ namespace mycooking.Views
             {
                 foreach (var pais in paises)
                 {
-                    RecetaPorPaisService.Instance.AgregarPais(pais);
+                    RecetaPorPaisViewModel.Instance.AgregarPais(pais);
                 }
                     
             }
@@ -58,13 +58,13 @@ namespace mycooking.Views
 
         private async void CountryButton_Click(object sender, RoutedEventArgs e)
         {
-            RecetaPorPaisService.Instance.Recetas.Clear();
+            RecetaPorPaisViewModel.Instance.Recetas.Clear();
             try
             {
                 var apiService = ApiService.GetInstance();
                 // Obtener el botón que se ha hecho clic
-                Button clickedButton = (Button)sender;
-
+                Button clickedButton = (Button)sender; 
+               
                 // Obtener el país seleccionado del DataContext del botón
                 Pais selectedCountry = (Pais)clickedButton.DataContext;
 
@@ -76,7 +76,7 @@ namespace mycooking.Views
                 {
                     foreach (var receta in recetas)
                     {
-                        RecetaPorPaisService.Instance.AgregarReceta(receta);
+                        RecetaPorPaisViewModel.Instance.AgregarReceta(receta);
                         
                     }
 
@@ -90,7 +90,7 @@ namespace mycooking.Views
             catch (Exception ex)
             {
                 Debug.WriteLine("Error al obtener las recetas: " + ex.Message);
-                // Manejar el error, por ejemplo, mostrando un mensaje al usuario
+               
             }
         }
 
@@ -118,12 +118,10 @@ namespace mycooking.Views
 
         private void OnPropertyChanged(string propertyName)
         {
-            // Aquí puedes implementar la lógica para manejar la notificación de cambios en las propiedades
-            // En este caso, lanzar un evento de PropertyChanged
+         
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // Puedes necesitar importar System.ComponentModel para usar PropertyChangedEventArgs
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Receta_Click(object sender, ItemClickEventArgs e)

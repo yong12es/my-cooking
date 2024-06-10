@@ -8,19 +8,19 @@ using mycooking.Models;
 
 namespace mycooking.Services
 {
-    public class RecetaService
+    public class RecetaViewModel
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static RecetaService _instance;
-        public static RecetaService Instance
+        private static RecetaViewModel _instance;
+        public static RecetaViewModel Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new RecetaService();
+                    _instance = new RecetaViewModel();
                 }
                 return _instance;
             }

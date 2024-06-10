@@ -31,46 +31,34 @@ namespace mycooking.Views
         public ListaTalleresPage()
         {
             this.InitializeComponent();
-
-            // Crear una instancia del servicio TallerService y asignarla al DataContext de la página
-            this.DataContext = TallerService.Instance;
-
-            // Crear una instancia del servicio ApiService
+            this.DataContext = TallerViewModel.Instance;
+  
             ApiService apiService = ApiService.GetInstance();
-
-            // Cargar los talleres desde la base de datos al iniciar la página
+            
             CargarTalleresDesdeBD(apiService);
-
         }
-
 
         private async void CargarTalleresDesdeBD(ApiService apiService)
         {
-            TallerService.Instance.Talleres.Clear();
+            TallerViewModel.Instance.Talleres.Clear();
             List<Taller> talleres = await apiService.ObtenerTalleresDesdeBD();
 
             if (talleres != null)
             {
                 foreach(var taller in talleres)
                 {
-                    TallerService.Instance.AgregarTaller(taller);
+                    TallerViewModel.Instance.AgregarTaller(taller);
                 }
             }
         }
 
-       
         private void Participar_Click(object sender, RoutedEventArgs e)
         {
-            // Obtener el taller correspondiente al botón en el que se hizo clic
             var button = sender as Button;
             var taller = button.DataContext as Taller;
+            
+            TallerViewModel.Instance.MoverTallerParticipado(taller);
 
-           
-
-            // Mover el taller de la lista principal a la lista de talleres participados
-            TallerService.Instance.MoverTallerParticipado(taller);
-
-            // Mostrar un mensaje de confirmación al usuario
             MostrarMensaje($"Has participado en el taller: {taller.nombre}");
         }
 

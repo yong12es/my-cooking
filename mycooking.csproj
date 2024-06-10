@@ -129,9 +129,13 @@
     <Compile Include="Models\RecetasResponse.cs" />
     <Compile Include="Models\Taller.cs" />
     <Compile Include="Services\ApiService.cs" />
-    <Compile Include="Services\RecetaPorPaisService.cs" />
-    <Compile Include="Services\RecetaService.cs" />
-    <Compile Include="Services\TallerService.cs" />
+    <Compile Include="ViewModels\AgregarIngredientesViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\FiltrarIngredientesViewModel.cs" />
+    <Compile Include="ViewModels\RecetaPorPaisViewModel.cs" />
+    <Compile Include="ViewModels\RecetaViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\TallerViewModel.cs" />
     <Compile Include="Views\CrearRecetaPage.xaml.cs">
       <DependentUpon>CrearRecetaPage.xaml</DependentUpon>
     </Compile>
@@ -290,9 +294,7 @@
       <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

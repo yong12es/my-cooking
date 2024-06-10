@@ -10,18 +10,18 @@ using mycooking.Models;
 
 namespace mycooking.Services
 {
-    public class TallerService: INotifyPropertyChanged
+    public class TallerViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static TallerService _instance;
-        public static TallerService Instance
+        private static TallerViewModel _instance;
+        public static TallerViewModel Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new TallerService();
+                    _instance = new TallerViewModel();
                 }
                 return _instance;
             }

@@ -54,16 +54,14 @@ namespace mycooking.Views
 
                 if (loginSuccessful)
                 {
-                    // El inicio de sesión fue exitoso, puedes redirigir al usuario a la siguiente página
                     txtMessage.Text = "Inicio de sesión correcto.";
                     
-
                     Frame.Navigate(typeof(DashboardPage), correo);
 
                 }
                 else
                 {
-                    // El inicio de sesión falló, muestra un mensaje de error al usuario
+                    
                     txtMessage.Text = "Inicio de sesión fallido. Verifique sus credenciales.";
                 }
             }

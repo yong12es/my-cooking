@@ -44,7 +44,5 @@
             </StackPanel>
             <TextBlock x:Name="txtMessage" Text="" Foreground="Red" Margin="0,10,0,0" FontSize="12" TextAlignment="Center"/>
         </StackPanel>
-
-
     </Grid>
 </Page>

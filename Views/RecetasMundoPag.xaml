@@ -47,7 +47,7 @@
                         <DataTemplate>
                             <Button Click="CountryButton_Click" Margin="10" Height="100" Width="100">
                                 <Grid>
-                                    <Image Source="{Binding Bandera}" Width="60" Height="60"/>
+                                    
                                     <TextBlock Text="{Binding Nombre}" HorizontalAlignment="Center"/>
                                 </Grid>
                             </Button>
@@ -56,10 +56,8 @@
                 </GridView>
             </ScrollViewer>
 
-            <!-- Control de búsqueda -->
             <TextBox x:Name="txtBuscar" PlaceholderText="Buscar" VerticalAlignment="Top" Height="45" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10"/>
 
-            <!-- Botón de búsqueda -->
             <Button Content="Buscar" VerticalAlignment="Top" Height="45" Width="100" Grid.Column="1" HorizontalAlignment="Right" Margin="10"/>
 
             <!-- Contenedor de recetas -->
@@ -72,13 +70,14 @@
                                 <TextBlock Text="{Binding Descripcion}" TextWrapping="Wrap"/>
                                 <TextBlock Text="Instrucciones:" FontWeight="Bold" Margin="0,10,0,0"/>
                                 <TextBlock Text="{Binding Instrucciones}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Ingredientes}" TextWrapping="Wrap"/>
                                 <Image Source="{Binding Imagen, Converter={StaticResource Base64ToBitmapImageConverter}}" Width="200" Height="200" Margin="0,10,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Border>
-            <!-- Contenedor de la receta seleccionada -->
+            
         </Grid>
     </Grid>
 

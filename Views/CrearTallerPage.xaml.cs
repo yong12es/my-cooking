@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using mycooking.Models;
+using System.Diagnostics;
+using System.Net.Http;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,12 +27,12 @@ namespace mycooking.Views
     /// </summary>
     public sealed partial class CrearTallerPage : Page
     {
-        private TallerService _tallerService;
+        private TallerViewModel _tallerService;
         private ApiService _apiService;
         public CrearTallerPage()
         {
             this.InitializeComponent();
-            _tallerService = TallerService.Instance;
+            _tallerService = TallerViewModel.Instance;
             _apiService = ApiService.GetInstance();
 
         }
@@ -45,6 +47,11 @@ namespace mycooking.Views
                 int duracionn = int.Parse(DuracionTextBox.Text);
                 string descripcion = DescripcionTextBox.Text;
 
+                if (fechaSinHora < DateTime.Now.Date)
+                {
+                    MostrarMensaje("La fecha del taller no puede ser anterior a la fecha actual.");
+                    return;
+                }
                 // Crear el taller
                 Taller taller = new Taller
                 {
@@ -58,12 +65,23 @@ namespace mycooking.Views
 
                 await _apiService.CrearTaller(taller, "");
 
-                // Mostrar un mensaje de éxito
+                
                 MostrarMensaje("Taller creado exitosamente.");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MostrarMensaje("No tienes permiso para realizar esta acción.");
+                Debug.WriteLine("Error al crear el taller: " + ex.Message);
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarMensaje($"Error al crear el taller: {ex.Message}");
+                Debug.WriteLine("Error al crear el taller: " + ex.Message);
             }
             catch (Exception ex)
             {
                 MostrarMensaje($"Error al crear el taller: {ex.Message}");
+                Debug.WriteLine("Error al crear el taller: " + ex.Message);
             }
         }
 

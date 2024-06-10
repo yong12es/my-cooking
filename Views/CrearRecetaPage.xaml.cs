@@ -39,7 +39,7 @@ namespace mycooking.Views
 
         private ApiService _apiService;
 
-        private RecetaService recetaService;
+        private RecetaViewModel recetaService;
 
         
 
@@ -48,7 +48,7 @@ namespace mycooking.Views
         {
             this.InitializeComponent();
             _apiService = ApiService.GetInstance();
-            recetaService = RecetaService.Instance;
+            recetaService = RecetaViewModel.Instance;
 
             CargarPaises();
 
@@ -160,9 +160,14 @@ namespace mycooking.Views
             }
             catch (UnauthorizedAccessException ex)
             {
-                MostrarMensaje("No tienes permiso para realizar esta acción. Por favor, inicia sesión nuevamente.");
+                MostrarMensaje("No tienes permiso para realizar esta acción.");
                 Debug.WriteLine("Error al crear la receta: " + ex.Message);
 
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarMensaje($"Error al crear la receta: {ex.Message}");
+                Debug.WriteLine("Error al crear la receta: " + ex.Message);
             }
             catch (Exception ex)
             {

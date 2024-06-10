@@ -34,19 +34,30 @@ namespace mycooking.Views
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            // Aquí iría la lógica para registrar al usuario
+            // Obtén los valores de las cajas de texto
             string correo = txtEmail.Text;
             string contrasenya = txtPassword.Password;
+            string confirmarContrasenya = txtConfirmPassword.Password;
+            string rol = "";
 
+            // Valida que el correo tenga un formato válido
             if (!IsValidEmail(correo))
             {
                 txtMessage.Text = "Formato de correo electrónico inválido.";
                 return;
             }
+
+            // Valida que las contraseñas coincidan
+            if (contrasenya != confirmarContrasenya)
+            {
+                txtMessage.Text = "Las contraseñas no coinciden.";
+                return;
+            }
+
             try
             {
                 // Enviar los datos del usuario al servidor para registrar
-                var response = await _apiService.Register(correo, contrasenya);
+                var response = await _apiService.Register(correo, contrasenya, rol);
 
                 // El registro fue exitoso, mostrar un mensaje de éxito
                 txtMessage.Text = "Registro exitoso. Ahora puedes iniciar sesión.";
@@ -77,6 +88,7 @@ namespace mycooking.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            // Redirigir al usuario a la página de inicio de sesión
             Frame.Navigate(typeof(Login));
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mycooking.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,11 +23,21 @@ namespace mycooking.Views
     /// </summary>
     public sealed partial class FiltrarIngredientesPage : Page
     {
+        public FiltrarIngredientesViewModel ViewModel { get; set; }
+
         public FiltrarIngredientesPage()
         {
             this.InitializeComponent();
+            ViewModel = new FiltrarIngredientesViewModel();
+            this.DataContext = ViewModel;
         }
 
-       
+      
+
+        private async void FiltrarButtom_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            string ingredientes = IngredientesTextBox.Text;
+            await ViewModel.ObtenerRecetasFiltradas(ingredientes);
+        }
     }
 }

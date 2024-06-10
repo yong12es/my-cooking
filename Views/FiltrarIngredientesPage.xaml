@@ -15,31 +15,37 @@
                 <GradientStop Color="Gray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBlock HorizontalAlignment="Left" Margin="62,90,0,0" TextWrapping="Wrap" Text="FiltrarIngredientes" VerticalAlignment="Top" Height="49" Width="528" FontSize="36"/>
-        <TextBlock TextWrapping="Wrap" Text="Seleccione los ingredientes para elaborar la receta" Height="61" FontSize="22" Width="1044" Margin="173,264,283,675"/>
-        <StackPanel Margin="173,299,697,226">
-            <TextBox PlaceholderText="Ingrese ingredientes separados por comas" Width="622" HorizontalAlignment="Left" />
-            <ComboBox PlaceholderText="Seleccione ingredientes" Margin="0,80,0,10">
-                <ComboBoxItem Content="Ingrediente 1"/>
-                <ComboBoxItem Content="Ingrediente 2"/>
-                <ComboBoxItem Content="Ingrediente 3"/>
-            </ComboBox>
-            <Button Content="Filtrar" Width="150" Height="40" Background="#FFA500" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,200,0,0"/>
+
+        <!-- Encabezado -->
+        <TextBlock Text="FiltrarIngredientes" FontSize="36" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"/>
+
+        <!-- Instrucciones -->
+        <TextBlock Text="Seleccione los ingredientes para elaborar la receta" FontSize="22" Margin="20,80,20,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+
+        <!-- Panel de entrada de ingredientes y botón de filtrar -->
+        <StackPanel Margin="20,120,20,0">
+            <TextBox x:Name="IngredientesTextBox" PlaceholderText="Ingrese ingredientes separados por comas"/>
+            <Button x:Name="FiltrarButtom" Content="Filtrar" Width="150" Height="40" Background="#FFA500" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0" Click="FiltrarButtom_Click"/>
         </StackPanel>
 
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="1042,225,148,196">
-            <ListView ItemsSource="{Binding ListaDeRecetas}" Width="200">
+        <!-- Contenedor de recetas -->
+        <ScrollViewer Margin="20,285,20,20">
+            <ListView ItemsSource="{Binding ListaDeRecetas}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}" FontSize="16"/>
+                        <StackPanel Margin="0,0,0,20">
+                            <TextBlock Text="{Binding Nombre}" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Descripcion}" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+                            <Image Source="{Binding Imagen, Converter={StaticResource Base64ToBitmapImageConverter}}" Width="200" Height="200" Stretch="UniformToFill" Margin="0,5"/>
+                            <TextBlock Text="Instrucciones:" FontSize="14" FontWeight="Bold" Margin="0,5"/>
+                            <TextBlock Text="{Binding Instrucciones}" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Border>
-        <TextBlock HorizontalAlignment="Left" Margin="1042,193,0,0" TextWrapping="Wrap" Text="Recetas" VerticalAlignment="Top" Height="27" Width="133" FontSize="20"/>
+        </ScrollViewer>
 
-
-
-
+        <!-- Etiqueta de Recetas -->
+        <TextBlock Text="Recetas" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,30"/>
     </Grid>
 </Page>

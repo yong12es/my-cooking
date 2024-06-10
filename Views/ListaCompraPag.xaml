@@ -6,48 +6,55 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        
+    </Page.Resources>
 
     <Grid>
+        
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#FFA500" Offset="0"/>
                 <GradientStop Color="Gray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Margin="20">
-            <TextBlock Text="Lista de Compra" FontSize="24" Margin="0,0,0,20"/>
-        </StackPanel>
-        <StackPanel Margin="80,104,340,254">
-            <!-- Item 1 -->
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0,0,0,10">
-                <StackPanel Margin="10">
-                    <TextBlock Text="Leche" FontSize="18"/>
-                    <TextBlock Text="Cantidad: 1 galón" FontSize="14" Margin="0,5,0,0"/>
-                </StackPanel>
+
+       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+            <TextBlock Text="Lista de Compra" FontSize="24" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            
+            <StackPanel Grid.Row="1" Margin="20">
+                <TextBox PlaceholderText="Nombre del ingrediente" Text="{Binding NuevoNombre, Mode=TwoWay}" Width="300" Margin="0 10"/>
+                <TextBox PlaceholderText="Cantidad" Text="{Binding NuevaCantidad, Mode=TwoWay}" Width="300" Margin="0 10"/>
+                <Button Content="Agregar Ingrediente" Command="{Binding AgregarIngredienteCommand}" Width="150" Margin="0 10" HorizontalAlignment="Center" />
+            </StackPanel>
+
+            
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="20" Height="500" Width="337">
+                <ScrollViewer>
+                    <ListView ItemsSource="{Binding Ingredientes}" Height="500" Width="337">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding NombreIngre}" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Cantidad}" FontSize="14" TextWrapping="Wrap" Margin="0 5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
             </Border>
-
-            <!-- Item 2 -->
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0,0,0,10">
-                <StackPanel Margin="10">
-                    <TextBlock Text="Huevos" FontSize="18"/>
-                    <TextBlock Text="Cantidad: 1 docena" FontSize="14" Margin="0,5,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Item 3 -->
-            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0,0,0,10">
-                <StackPanel Margin="10">
-                    <TextBlock Text="Pan" FontSize="18"/>
-                    <TextBlock Text="Cantidad: 1 paquete" FontSize="14" Margin="0,5,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Agregar más elementos según sea necesario -->
-        </StackPanel>
-
-        <!-- Botón para agregar nuevo elemento -->
-        <Button Content="Agregar Nuevo" VerticalAlignment="Bottom" Margin="528,0,0,180"/>
-
+        </Grid>
     </Grid>
 </Page>

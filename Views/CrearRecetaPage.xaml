@@ -22,7 +22,8 @@
         </StackPanel>
 
         <!-- Contenido -->
-        <StackPanel Margin="110" Orientation="Vertical">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="110" Orientation="Vertical">
             <TextBlock Text="Nombre de la Receta" FontSize="18"/>
             <TextBox x:Name="NombreRecetaTextBox" PlaceholderText="Ingrese el nombre de la receta" Margin="0,5,0,20"/>
 
@@ -56,8 +57,8 @@
             <Image x:Name="miImagenControl" Stretch="Uniform" VerticalAlignment="Center" Margin="400,-230, 0,20" Height="224" Width="388"/>
 
         </StackPanel>
+        </ScrollViewer>
 
-        
         <Button Content="Crear Receta" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Click="CrearReceta_Click" Margin="0,0,0,20"/>
     </Grid>
 </Page>

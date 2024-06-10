@@ -10,18 +10,18 @@ using mycooking.Models;
 
 namespace mycooking.Services
 {
-    public class RecetaPorPaisService : INotifyPropertyChanged
+    public class RecetaPorPaisViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static RecetaPorPaisService _instance;
-        public static RecetaPorPaisService Instance
+        private static RecetaPorPaisViewModel _instance;
+        public static RecetaPorPaisViewModel Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new RecetaPorPaisService();
+                    _instance = new RecetaPorPaisViewModel();
                 }
                 return _instance;
             }

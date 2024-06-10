@@ -41,7 +41,6 @@ namespace mycooking.Views
         }
         private void RecetasMundoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Navega hacia la página de recetas del mundo
             MainContentFrame.Navigate(typeof(RecetasMundoPag));
 
         }
