@@ -1,29 +1,16 @@
-﻿using System;
+﻿using mycooking.Models;
+using mycooking.Services;
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
-using System.Diagnostics;
-using System.Net.Http.Headers;
-using mycooking.Services;
-using mycooking.Models;
-using Windows.Services.Maps;
-using Windows.Media.Protection.PlayReady;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,14 +21,14 @@ namespace mycooking.Views
     /// </summary>
     public sealed partial class CrearRecetaPage : Page
     {
-        
+
         private StorageFile imagenSeleccionada;
 
         private ApiService _apiService;
 
         private RecetaViewModel recetaService;
 
-        
+
 
         private int idPaisSeleccionado;
         public CrearRecetaPage()
@@ -73,36 +60,32 @@ namespace mycooking.Views
             nuevoIngredientePanel.Children.Add(nuevoIngredienteTextBox);
             nuevoIngredientePanel.Children.Add(nuevaCantidadTextBox);
 
-           
+
             IngredientesStackPanel.Children.Add(nuevoIngredientePanel);
         }
 
         private async void CrearReceta_Click(object sender, RoutedEventArgs e)
         {
             try
-            {            
-                // Verificar si el token de acceso está vacío
+            {
+
                 if (string.IsNullOrEmpty(_apiService.AccessToken))
                 {
-                    // El token de acceso está vacío, mostrar un mensaje de error
                     Debug.WriteLine("El token de acceso está vacío.");
                     MostrarMensaje("Debe iniciar sesión antes de crear una receta. El token de acceso está vacío.");
                     return;
                 }
                 else
                 {
-                    // Mostrar el contenido del token de acceso en la consola de depuración
                     Debug.WriteLine("Contenido del token de acceso: primera linea" + _apiService.AccessToken);
                 }
 
-                // Obtener los valores de los ingredientes
                 List<Ingrediente> ingredientes = new List<Ingrediente>();
                 foreach (StackPanel panelIngrediente in IngredientesStackPanel.Children)
                 {
                     TextBox textBoxIngrediente = panelIngrediente.Children[0] as TextBox;
                     TextBox textBoxCantidad = panelIngrediente.Children[1] as TextBox;
 
-                    // Verificar que ambos campos no estén vacíos
                     if (!string.IsNullOrEmpty(textBoxIngrediente.Text) && !string.IsNullOrEmpty(textBoxCantidad.Text))
                     {
                         Ingrediente ingrediente = new Ingrediente
@@ -153,9 +136,8 @@ namespace mycooking.Views
                 recetaService.AgregarReceta(receta);
 
                 // Crear la receta usando ApiService
-                await _apiService.CrearReceta(receta,"");
+                await _apiService.CrearReceta(receta, "");
 
-                // Mostrar un mensaje de éxito
                 MostrarMensaje("Receta creada exitosamente.");
             }
             catch (UnauthorizedAccessException ex)
@@ -171,7 +153,7 @@ namespace mycooking.Views
             }
             catch (Exception ex)
             {
-                
+
                 MostrarMensaje($"Error al crear la receta: {ex.Message}");
             }
         }
@@ -189,13 +171,12 @@ namespace mycooking.Views
             imagenSeleccionada = await filePicker.PickSingleFileAsync();
             if (imagenSeleccionada != null)
             {
-                // Abrir el archivo seleccionado y cargar la imagen en el control de imagen
                 using (IRandomAccessStream fileStream = await imagenSeleccionada.OpenAsync(FileAccessMode.Read))
                 {
                     BitmapImage bitmapImage = new BitmapImage();
 
                     bitmapImage.SetSource(fileStream);
-                    miImagenControl.Source = bitmapImage; 
+                    miImagenControl.Source = bitmapImage;
                 }
             }
         }
@@ -213,7 +194,7 @@ namespace mycooking.Views
             }
             else
             {
-               
+
             }
         }
         private void PaisesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -233,11 +214,11 @@ namespace mycooking.Views
 
         private void MostrarMensaje(string mensaje)
         {
-            
+
             var dialog = new Windows.UI.Popups.MessageDialog(mensaje);
             _ = dialog.ShowAsync();
         }
 
-       
+
     }
 }

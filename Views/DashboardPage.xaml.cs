@@ -32,7 +32,6 @@ namespace mycooking.Views
         {
             base.OnNavigatedTo(e);
 
-            // Verificar si se proporcionó un correo electrónico como parámetro al navegar a esta página
             if (e.Parameter != null && e.Parameter is string userEmail)
             {
                 _userEmail = userEmail;

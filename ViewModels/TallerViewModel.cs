@@ -34,7 +34,7 @@ namespace mycooking.Services
             set { _talleres = value; }
         }
 
-        private ObservableCollection<Taller> _talleresParticipados = new ObservableCollection<Taller>(); // Lista de talleres en los que el usuario ha participado
+        private ObservableCollection<Taller> _talleresParticipados = new ObservableCollection<Taller>(); 
         public ObservableCollection<Taller> TalleresParticipados
         {
             get { return _talleresParticipados; }
@@ -44,7 +44,7 @@ namespace mycooking.Services
         public void AgregarTaller(Taller taller)
         {
             _talleres.Add(taller);
-            OnPropertyChanged(nameof(Talleres)); // Notificar que la propiedad Talleres ha cambiado
+            OnPropertyChanged(nameof(Talleres));
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -54,11 +54,8 @@ namespace mycooking.Services
 
         public void MoverTallerParticipado(Taller taller)
         {
-            // Remover el taller de la lista principal
             _talleres.Remove(taller);
             OnPropertyChanged(nameof(Talleres));
-
-            // Agregar el taller a la lista de talleres participados
             _talleresParticipados.Add(taller);
             OnPropertyChanged(nameof(TalleresParticipados));
         }

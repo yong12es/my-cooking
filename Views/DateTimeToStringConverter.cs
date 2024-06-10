@@ -13,7 +13,6 @@ namespace mycooking.Views
         {
             if (value is DateTime dateTime)
             {
-                // Formatea la fecha sin la hora
                 return dateTime.ToString("yyyy-MM-dd");
             }
             return string.Empty;

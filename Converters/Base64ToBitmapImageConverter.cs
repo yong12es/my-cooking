@@ -28,7 +28,7 @@ namespace mycooking.Converters
                 }
                 catch (Exception)
                 {
-                    // Handle exceptions
+                 
                 }
             }
             return null;

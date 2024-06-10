@@ -42,7 +42,6 @@ namespace mycooking.Views
         private async void CargarPaises()
         {
             RecetaPorPaisViewModel.Instance.Paises.Clear();
-            // Obtener la lista de países desde el servicio de la API
             var apiService = ApiService.GetInstance();
             var paises = await apiService.ObtenerPaises();
             var image = Image.SourceProperty;
@@ -62,13 +61,10 @@ namespace mycooking.Views
             try
             {
                 var apiService = ApiService.GetInstance();
-                // Obtener el botón que se ha hecho clic
                 Button clickedButton = (Button)sender; 
                
-                // Obtener el país seleccionado del DataContext del botón
                 Pais selectedCountry = (Pais)clickedButton.DataContext;
 
-                // Obtener las recetas asociadas con el país seleccionado
                 List<Receta> recetas = await apiService.ObtenerRecetasPorPais(selectedCountry.Id);
                 
 
