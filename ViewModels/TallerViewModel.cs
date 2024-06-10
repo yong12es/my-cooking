@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using mycooking.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using mycooking.Models;
 
 namespace mycooking.Services
 {
-    public class TallerViewModel: INotifyPropertyChanged
+    public class TallerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,7 +29,7 @@ namespace mycooking.Services
             set { _talleres = value; }
         }
 
-        private ObservableCollection<Taller> _talleresParticipados = new ObservableCollection<Taller>(); 
+        private ObservableCollection<Taller> _talleresParticipados = new ObservableCollection<Taller>();
         public ObservableCollection<Taller> TalleresParticipados
         {
             get { return _talleresParticipados; }

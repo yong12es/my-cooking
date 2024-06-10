@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using mycooking.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using mycooking.Models;
 
 namespace mycooking.Services
 {
@@ -31,7 +26,8 @@ namespace mycooking.Services
         public ObservableCollection<Pais> Paises
         {
             get { return _paises; }
-            set { 
+            set
+            {
                 _paises = value;
                 OnPropertyChanged(nameof(Paises));
             }
@@ -41,7 +37,8 @@ namespace mycooking.Services
         public ObservableCollection<Receta> Recetas
         {
             get { return _recetas; }
-            set { 
+            set
+            {
                 _recetas = value;
                 OnPropertyChanged(nameof(Recetas));
             }

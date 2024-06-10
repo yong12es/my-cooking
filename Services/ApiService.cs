@@ -1,16 +1,12 @@
-﻿using System;
+﻿using mycooking.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using Windows.Foundation;
-using mycooking.Models;
-using System.Diagnostics;
 using Windows.Storage;
 
 namespace mycooking.Services
@@ -44,9 +40,9 @@ namespace mycooking.Services
             return _instance;
         }
         public void SetAccessToken(string token)
-    {
-        AccessToken = token;
-    }
+        {
+            AccessToken = token;
+        }
 
         //Login
         public async Task<bool> Login(string correo, string contrasenya)
@@ -97,7 +93,7 @@ namespace mycooking.Services
         //Register
         public async Task<string> Register(string correo, string contrasenya, string rol)
         {
-            var data = new { correo, contrasenya,rol};
+            var data = new { correo, contrasenya, rol };
             var json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -113,13 +109,13 @@ namespace mycooking.Services
             }
         }
         //Crear Receta
-        public async Task CrearReceta(Receta receta,string rol)
+        public async Task CrearReceta(Receta receta, string rol)
         {
             try
             {
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 string accessToken = localSettings.Values["AccessToken"] as string;
-                
+
                 if (string.IsNullOrEmpty(AccessToken))
                 {
                     throw new InvalidOperationException("Debe iniciar sesión antes de crear una receta.");
@@ -131,12 +127,12 @@ namespace mycooking.Services
                 Debug.WriteLine(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                
+
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AccessToken);
                 Debug.WriteLine("Token de acceso enviado en el encabezado de autorización:");
                 Debug.WriteLine(accessToken);
 
-                
+
                 HttpResponseMessage response = await _client.PostAsync("recetas", content);
 
                 Debug.WriteLine("Datos enviados a la API al crear la receta:");
@@ -145,7 +141,7 @@ namespace mycooking.Services
                 string responseContent = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine("Respuesta del servidor: " + responseContent);
 
-                
+
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     throw new UnauthorizedAccessException("No tienes permiso para realizar esta acción.");
@@ -154,7 +150,7 @@ namespace mycooking.Services
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine("Receta creada exitosamente.");
-                    
+
                 }
                 else
                 {
@@ -165,13 +161,13 @@ namespace mycooking.Services
             {
                 Debug.WriteLine("Error al crear la receta: " + ex.Message);
                 throw;
-                
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error al crear la receta: " + ex.Message);
                 throw;
-                
+
             }
         }
 
@@ -183,13 +179,13 @@ namespace mycooking.Services
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 string accessToken = localSettings.Values["AccessToken"] as string;
 
-                
+
                 if (string.IsNullOrEmpty(accessToken))
                 {
                     throw new InvalidOperationException("Debe iniciar sesión antes de obtener los talleres.");
                 }
 
-               
+
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(accessToken);
 
                 Debug.WriteLine("Solicitud de obtener talleres:");
@@ -230,20 +226,20 @@ namespace mycooking.Services
         {
             try
             {
-                
+
                 string accessToken = AccessToken;
                 if (string.IsNullOrEmpty(accessToken))
                 {
                     throw new InvalidOperationException("Debe iniciar sesión antes de obtener las recetas.");
                 }
 
-                
+
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(accessToken);
 
                 HttpResponseMessage response = await _client.GetAsync($"recetasporpais?paisId={paisId}");
                 if (response.IsSuccessStatusCode)
                 {
-                    
+
                     string responseData = await response.Content.ReadAsStringAsync();
                     Debug.WriteLine("JSON recibido: " + responseData);
 
@@ -281,7 +277,7 @@ namespace mycooking.Services
             {
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 string accessToken = localSettings.Values["AccessToken"] as string;
-                
+
                 if (string.IsNullOrEmpty(accessToken))
                 {
                     throw new InvalidOperationException("Debe iniciar sesión antes de crear un taller.");
@@ -374,7 +370,7 @@ namespace mycooking.Services
             catch (Exception ex)
             {
                 Debug.WriteLine("Error al obtener los talleres desde la base de datos: " + ex.Message);
-                return null; 
+                return null;
             }
         }
 
@@ -382,7 +378,7 @@ namespace mycooking.Services
         {
             try
             {
-               
+
                 string accessToken = AccessToken;
                 if (string.IsNullOrEmpty(accessToken))
                 {
@@ -395,7 +391,7 @@ namespace mycooking.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine("JSON recibido: " + responseData);                  
+                    Debug.WriteLine("JSON recibido: " + responseData);
                     RecetasResponse recetasResponse = JsonConvert.DeserializeObject<RecetasResponse>(responseData);
                     if (recetasResponse != null && recetasResponse.Ok && recetasResponse.Recetas != null)
                     {

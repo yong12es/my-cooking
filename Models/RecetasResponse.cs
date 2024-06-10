@@ -1,10 +1,21 @@
-﻿using System;
+﻿
+/* Cambio no fusionado mediante combinación del proyecto 'Models'
+Antes:
+using System;
+Después:
+using Newtonsoft.Json;
+using System;
+*/
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+/* Cambio no fusionado mediante combinación del proyecto 'Models'
+Antes:
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+Después:
+using System.Threading.Tasks;
+*/
+
 
 namespace mycooking.Models
 {
@@ -19,6 +30,6 @@ namespace mycooking.Models
 
     }
 
-   
+
 
 }

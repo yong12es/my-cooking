@@ -1,24 +1,11 @@
-﻿using System;
+﻿using mycooking.Models;
+using mycooking.Services;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.ComponentModel;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Collections.ObjectModel;
-using System.ServiceModel;
-using mycooking.Models;
-using mycooking.Services;
-using System.Diagnostics;
-using Windows.UI.Xaml.Media.Imaging;
-using System.ComponentModel;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,11 +16,11 @@ namespace mycooking.Views
     /// </summary>
     public sealed partial class RecetasMundoPag : Page
     {
-        
-        
+
+
         public RecetasMundoPag()
         {
-            
+
             this.InitializeComponent();
             DataContext = RecetaPorPaisViewModel.Instance;
             CargarPaises();
@@ -51,7 +38,7 @@ namespace mycooking.Views
                 {
                     RecetaPorPaisViewModel.Instance.AgregarPais(pais);
                 }
-                    
+
             }
         }
 
@@ -61,19 +48,19 @@ namespace mycooking.Views
             try
             {
                 var apiService = ApiService.GetInstance();
-                Button clickedButton = (Button)sender; 
-               
+                Button clickedButton = (Button)sender;
+
                 Pais selectedCountry = (Pais)clickedButton.DataContext;
 
                 List<Receta> recetas = await apiService.ObtenerRecetasPorPais(selectedCountry.Id);
-                
 
-                if (recetas != null && recetas.Count >0) 
+
+                if (recetas != null && recetas.Count > 0)
                 {
                     foreach (var receta in recetas)
                     {
                         RecetaPorPaisViewModel.Instance.AgregarReceta(receta);
-                        
+
                     }
 
                 }
@@ -81,12 +68,12 @@ namespace mycooking.Views
                 {
                     Debug.WriteLine("No se encontro recetas");
                 }
-               
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error al obtener las recetas: " + ex.Message);
-               
+
             }
         }
 
@@ -114,7 +101,7 @@ namespace mycooking.Views
 
         private void OnPropertyChanged(string propertyName)
         {
-         
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

@@ -1,25 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using mycooking.Services;
+using System;
+using System.Text.RegularExpressions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using mycooking.Services;
-using System.Text.RegularExpressions;
-using System.Net.Http;
-using Newtonsoft.Json.Linq;
-using Windows.Services.Maps;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,7 +19,7 @@ namespace mycooking.Views
             this.InitializeComponent();
             _apiService = ApiService.GetInstance();
         }
-     private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string correo = txtUsername.Text;
             string contrasenya = txtPassword.Password;
@@ -55,13 +38,13 @@ namespace mycooking.Views
                 if (loginSuccessful)
                 {
                     txtMessage.Text = "Inicio de sesión correcto.";
-                    
+
                     Frame.Navigate(typeof(DashboardPage), correo);
 
                 }
                 else
                 {
-                    
+
                     txtMessage.Text = "Inicio de sesión fallido. Verifique sus credenciales.";
                 }
             }

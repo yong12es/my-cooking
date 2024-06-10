@@ -1,22 +1,12 @@
-﻿using mycooking.Services;
+﻿using mycooking.Models;
+using mycooking.Services;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Diagnostics;
+using System.Net.Http;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using mycooking.Models;
-using System.Diagnostics;
-using System.Net.Http;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -65,7 +55,7 @@ namespace mycooking.Views
 
                 await _apiService.CrearTaller(taller, "");
 
-                
+
                 MostrarMensaje("Taller creado exitosamente.");
             }
             catch (UnauthorizedAccessException ex)
@@ -87,7 +77,7 @@ namespace mycooking.Views
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-           
+
 
             base.OnNavigatingFrom(e);
         }

@@ -1,15 +1,11 @@
-﻿using System;
+﻿using mycooking.Models;
+using mycooking.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using mycooking.Models;
-using mycooking.Services;
-using System.Diagnostics;
 
 namespace mycooking.ViewModels
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Data;
@@ -28,7 +27,7 @@ namespace mycooking.Converters
                 }
                 catch (Exception)
                 {
-                 
+
                 }
             }
             return null;

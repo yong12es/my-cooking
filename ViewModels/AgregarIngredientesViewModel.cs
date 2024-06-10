@@ -1,26 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using mycooking.Models;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.Storage;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Windows.Storage;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Windows.Storage;
 
 
 namespace mycooking.ViewModels

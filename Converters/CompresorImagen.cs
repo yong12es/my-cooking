@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
-using Windows.Storage.Streams;
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace mycooking.Converters
 {
@@ -64,7 +61,7 @@ namespace mycooking.Converters
                     dr.ReadBytes(returnVal);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
