@@ -81,6 +81,48 @@ cd my_cooking
 2.Abrir el proyecto en Visual Studio
 3.Ejecutar la aplicación en UWP
 
-## 📸 Capturas de Pantalla
+## 📸 Capturas de Pantalla  
+
+### 🏡 Home  
+Desde el **Home**, accede a todas las opciones principales de **My Cooking**.  
+
+![Home](Assets/home.png)  
+
+---  
+
+### 🏠 Pantalla de Inicio | 🔐 Registro de Usuario  
+La pantalla de **Inicio** con acceso rápido y el formulario de **Registro** para nuevos usuarios.  
+
+<img src="Assets/inicio.png" alt="Pantalla de Inicio" width="45%">  
+<img src="Assets/registro.png" alt="Registro de Usuario" width="45%">  
+
+---  
+
+### 🍽️ Recetas del Mundo 🌍 | 📋 Lista de Talleres  
+Explora recetas por país y descubre **talleres de cocina** para aprender nuevas habilidades.  
+
+<img src="Assets/recetas-mundo.png" alt="Recetas del Mundo" width="45%">  
+<img src="Assets/lista-talleres.png" alt="Lista de Talleres" width="45%">  
+
+---  
+
+### ✍️ Crear Receta (Admin) | 📜 Lista de Talleres  
+Los **administradores** pueden **crear recetas** y gestionar los **talleres de cocina**.  
+
+<img src="Assets/crear-receta-admin.png" alt="Crear Receta (Admin)" width="45%">  
+<img src="Assets/lista-talleres.png" alt="Lista de Talleres" width="45%">  
+
+## 💡 Contribuciones y Sugerencias  
+¡Toda sugerencia es bienvenida! Si tienes ideas para mejorar **My Cooking**, puedes:  
+- Crear un **issue** en el repositorio.  
+- Hacer un **fork** y enviar un **pull request**.  
+- Contactarme directamente.  
+
+## 📬 Contacto  
+Si tienes alguna pregunta o necesitas ayuda con el proyecto, puedes contactarme en:  
+
+ 
+💼 **LinkedIn:** [linkedin.com/in/aylz](https://www.linkedin.com/in/aylz/)  
+🐙 **GitHub:** [github.com/yong12es](https://github.com/yong12es)  
 
 
