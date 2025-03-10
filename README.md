@@ -9,7 +9,7 @@
 ✅ **Explorar Recetas del Mundo**: Busca recetas por país o ingredientes.  
 ✅ **Gestión de Recetas**: Añade, edita y organiza recetas (solo administradores).  
 ✅ **Lista de Compra**: Guarda ingredientes y planea tus compras.  
-✅ **Talleres de Cocina**: Descubre y participa en talleres gastronómicos.  
+✅ **Talleres de Cocina**: Descubre y participa en talleres gastronómicos (creado por administradores). 
 ✅ **Autenticación Segura**: Registro e inicio de sesión con JWT.  
 ✅ **Interfaz Moderna**: Diseño intuitivo y minimalista con XAML.  
 
