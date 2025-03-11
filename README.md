@@ -98,19 +98,19 @@ La pantalla de **Inicio** con acceso rápido y el formulario de **Registro** par
 
 ---  
 
-### 🍽️ Recetas del Mundo 🌍 | 📋 Lista de Talleres  
-Explora recetas por país y descubre **talleres de cocina** para aprender nuevas habilidades.  
-
-<img src="Assets/recetas-mundo.png" alt="Recetas del Mundo" width="45%">  
-<img src="Assets/lista-talleres.png" alt="Lista de Talleres" width="45%">  
-
----  
-
 ### ✍️ Crear Receta (Admin) | 📜 Lista de Talleres  
 Los **administradores** pueden **crear recetas** y gestionar los **talleres de cocina**.  
 
 <img src="Assets/crear-receta-admin.png" alt="Crear Receta (Admin)" width="45%">  
 <img src="Assets/lista-talleres.png" alt="Lista de Talleres" width="45%">  
+
+---  
+
+### 🍽️ Recetas del Mundo 🌍 
+Explora recetas por país.  
+
+<img src="Assets/recetas-mundo.png" alt="Recetas del Mundo" width="45%">   
+
 
 ## 💡 Contribuciones y Sugerencias  
 ¡Toda sugerencia es bienvenida! Si tienes ideas para mejorar **My Cooking**, puedes:  
